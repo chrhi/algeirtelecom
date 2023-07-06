@@ -1,7 +1,7 @@
 import React ,  { useState } from 'react'
 import AppLayout from '~/components/layout'
-import { columns } from '~/components/tables/reports/columns'
-import { DataTable } from '~/components/tables/reports/data-table'
+import { columns } from '~/components/tables/dommands/columns'
+import { DataTable } from '~/components/tables/dommands/data-table'
 import { api } from '~/utils/api'
 
 
@@ -11,16 +11,13 @@ function Page() {
   
   const [data , setData] = useState<any[]>([])
 
-  const {refetch} = api.users.getUsers.useQuery(undefined , {
+  const {refetch} = api.dommande.getDommands.useQuery(undefined , {
     onSuccess(data) {
       const DataFORMATED = data?.map((item) => {
         return{
           id: item.id,
-          name : item.name , 
-          status: "active",
-          email : item.email , 
-          type: item.type,
-          password : item.password
+          title : item.title , 
+          description : item.description,
         }
       })
       setData(DataFORMATED)

@@ -39,7 +39,7 @@ export const reportsRouter = createTRPCRouter({
     }),
     deteReport: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query( async ({ input , ctx }) => {
+    .mutation( async ({ input , ctx }) => {
       
      const data = await ctx.prisma.report.delete({
         where : {
@@ -52,7 +52,7 @@ export const reportsRouter = createTRPCRouter({
     .input(z.object({ 
         ClientInformation : z.string(),
         Details : z.string(), 
-        Date : z.string(), 
+       
         title : z.string(),
         Request : z.string(), 
      }))
@@ -62,7 +62,7 @@ export const reportsRouter = createTRPCRouter({
       data: {
         ClientInformation :  input.ClientInformation, 
         Details :  input.Details, 
-        Date :  input.Date , 
+         
         title :  input.title, 
         Request :  input.Request
       }

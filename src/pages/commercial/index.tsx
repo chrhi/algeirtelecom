@@ -3,7 +3,14 @@ import AppLayout from '~/components/layout'
 import { columns } from '~/components/tables/reports/columns'
 import { DataTable } from '~/components/tables/reports/data-table'
 import { api } from '~/utils/api'
+import dynamic from 'next/dynamic';
+const ReportDetails = dynamic(() => import('~/components/models/report-details'), {
+  ssr: false,
+});
 
+const ReportDeleteAlert = dynamic(() => import('~/components/alerts/delete-report'), {
+  ssr: false,
+});
 
 
 function Page() {
@@ -27,6 +34,8 @@ function Page() {
   })
   return (
    <AppLayout commercial auth = {true}>
+   <ReportDetails refetch={refetch}/>
+   <ReportDeleteAlert  refetch={refetch}/>
       <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>

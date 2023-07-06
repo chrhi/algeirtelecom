@@ -23,8 +23,7 @@ import {
   
 } from "~/components/ui/table"
 
-import { RapportAdd } from "~/components/rapport-add"
-import ReportDetails from "~/components/models/report-details"
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -67,8 +66,7 @@ export function DataTable<TData, TValue>({
     <>
    
     <div className="rounded-md w-full mx-auto  border">
-
-   
+    
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -129,7 +127,7 @@ export function DataTable<TData, TValue>({
         >
           Next
         </Button>
-        <RapportAdd  refetch={refetch} />
+        
        
       </div>
     </>

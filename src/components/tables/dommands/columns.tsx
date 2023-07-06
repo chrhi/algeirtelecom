@@ -7,70 +7,38 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { openModelReport } from "~/reducer/open-models"
-import { deleteReport } from "~/reducer/delete-actions"
+
 
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export type report  = {
+export type requast  = {
   id: string
   title : string , 
-  clientInformation: string,
-  Date : string , 
-  Details: string,
-  Request : string
+  description : string,
+    
 }
 
-export const columns: ColumnDef<report>[] = [
+export const columns: ColumnDef<requast>[] = [
  
+  {
+    accessorKey: "id",
+    header: "Id",
+  },
   {
     accessorKey: "title",
     header: "Title",
   },
   {
-    accessorKey: "clientInformation",
-    header: "clientInformation",
+    accessorKey: "description",
+    header: "Description",
   },
-  {
-    accessorKey: "Details",
-    header: "Details",
-  },
-  {
-    accessorKey: "Request",
-    header: "Request",
-  },
-  {
-    accessorKey: "Date",
-    header: "Date",
-  },
+  
   {
     id: "actions",
     cell: ({ row }) => {
      
-     const setData = openModelReport(state => state.setData)
-
-     const setIsOpen = deleteReport(state => state.setShowModel)
-     const setId = deleteReport(state => state.setId)
-
-     const handleOpenModel = () => {
-      setData({
-        Date : row.original.Date , 
-        clientInformation : row.original.clientInformation , 
-        Details : row.original.Details , 
-        Request : row.original.Request ,  
-        showModel : true , 
-        Title : row.original.title ,  
-        id : row.original.id , 
-      })
-     }
-
-     const handleDeleteRow = () => {
-      setId(row.original.id)
-      setIsOpen(true)
-     }
- 
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -88,14 +56,10 @@ export const columns: ColumnDef<report>[] = [
              Copier l'ID utilisateur
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-
-            <DropdownMenuItem 
-        
-        className="cursor-pointer !hover:bg-red-300" onClick={handleOpenModel} >Voir les details</DropdownMenuItem>
             
             <DropdownMenuItem 
         
-            className="cursor-pointer !hover:bg-red-300" onClick={handleDeleteRow}>Supprimer</DropdownMenuItem>
+            className="cursor-pointer !hover:bg-red-300" >Supprimer</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
