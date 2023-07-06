@@ -1,13 +1,13 @@
-/* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react'
+import React ,  { useState } from 'react'
 import AppLayout from '~/components/layout'
-import {columns} from "~/components/tables/users/columns"
-import {DataTable} from "~/components/tables/users/data-table"
+import { columns } from '~/components/tables/reports/columns'
+import { DataTable } from '~/components/tables/reports/data-table'
 import { api } from '~/utils/api'
 
 
-function Page() {
 
+function Page() {
+  
   const [data , setData] = useState<any[]>([])
 
   const {refetch} = api.users.getUsers.useQuery(undefined , {
@@ -25,15 +25,14 @@ function Page() {
       setData(DataFORMATED)
     },
   })
-
   return (
-   <AppLayout commercial={false} auth = {true}>
-       <div className='w-full  flex flex-col items-start h-full  '>
+   <AppLayout commercial auth = {true}>
+      <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Tableau des utrlistaerus pour l'Admin</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Tableau des utilisateurs pour commercial</h2>
             <p className="text-muted-foreground">
-            Voici une liste de vos rapports !
+            Voici une liste de vos dommands !
             </p>
           </div>
           

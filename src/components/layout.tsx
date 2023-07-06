@@ -1,13 +1,15 @@
 import type { FC , ReactNode } from 'react'
 import Header from './header'
 import Head from 'next/head'
+import CommercialHeader from './CommercialHeader'
 
 interface layoutAbdullahProps {
   children : ReactNode, 
-  auth : boolean
+  auth : boolean,
+  commercial : boolean
 }
 
-const AppLayout: FC<layoutAbdullahProps> = ({children , auth}) => {
+const AppLayout: FC<layoutAbdullahProps> = ({children ,commercial, auth}) => {
 
   return<>
   <Head>
@@ -16,7 +18,8 @@ const AppLayout: FC<layoutAbdullahProps> = ({children , auth}) => {
   <link rel="icon" href="/favicon.ico" />
   </Head>
   <div className='w-full min-h-full bg-white '>
-    <Header type={auth} />
+    {commercial ? <CommercialHeader  type={auth} /> :     <Header type={auth} />}
+
     <div className='container mt-[70px] '>
         {children}
     </div>

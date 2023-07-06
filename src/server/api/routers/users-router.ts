@@ -53,7 +53,7 @@ export const userRouter = createTRPCRouter({
       bio : z.string(), 
       image : z.string()
      }))
-    .query( async ({input , ctx }) => {
+    .mutation( async ({input , ctx }) => {
       
      const data = await ctx.prisma.user.create({
       data: {
