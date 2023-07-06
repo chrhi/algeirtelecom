@@ -4,7 +4,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
   getUsers: publicProcedure
-    .input(z.object({ text: z.string() }))
+  
     .query( async ({ ctx }) => {
       
      const data = await ctx.prisma.user.findMany()

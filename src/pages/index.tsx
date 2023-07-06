@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React from "react"
 import AppLayout from "~/components/layout";
@@ -27,6 +28,8 @@ export default function Home() {
     },
     onError : (err) => {
       toast({
+        className:"bg-red-500 text-white",
+        variant: "destructive",
         title : "error",
         description : err.message
       })
@@ -41,6 +44,8 @@ export default function Home() {
  const handleSubmit = () => {
   if(!inputs.email || !inputs.password){
     toast({
+      className:"bg-red-500 text-white",
+      variant: "destructive", 
       title : "email and password are required"
     })
   }
@@ -57,10 +62,10 @@ export default function Home() {
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl text-start font-semibold tracking-tight">
-                Sign in  
+              S'identifier 
               </h1>
               <p className="text-sm text-start text-muted-foreground">
-                Enter your email and password below to sign in to your account
+              Entrez votre email et votre mot de passe ci-dessous pour vous connecter à votre compte
               </p>
             </div>
           
