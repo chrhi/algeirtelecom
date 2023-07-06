@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
@@ -65,6 +66,24 @@ export const userRouter = createTRPCRouter({
       }
      })
      return data
+    }),
+    signInUser: publicProcedure
+    .input(z.object({ email: z.string() , password : z.string() }))
+    .mutation( async ({ input , ctx }) => {
+
+      const user = await ctx.prisma.user.findUnique({
+        where : {
+          email : input.email
+        }
+      })
+      if(!user){
+        throw new TRPCError({code : "BAD_REQUEST" , message : "user do not exist"})
+      }
+
+      if(user.password === input.password){
+        return user
+      }
+      throw new TRPCError({code : "BAD_REQUEST" , message : "password not currect"})
     }),
 
   
