@@ -73,7 +73,7 @@ export default function Home() {
         
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
-              Email
+            E-mail
             </Label>
             <Input
               onChange={(e) => setInputs({...inputs , email :e.target.value})}
@@ -88,7 +88,7 @@ export default function Home() {
           </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
-              password
+            mot de passe
             </Label>
             <Input
               onChange={(e) => setInputs({...inputs , password :e.target.value})}
@@ -107,7 +107,7 @@ export default function Home() {
                   {userMutation.isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+           Se connecter avec un e-mail
           </Button>
         </div>
 

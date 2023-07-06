@@ -10,16 +10,16 @@ function Page() {
   
   const [data , setData] = useState<any[]>([])
 
-  const {refetch} = api.users.getUsers.useQuery(undefined , {
+  const {refetch} = api.report.getReports.useQuery(undefined , {
     onSuccess(data) {
       const DataFORMATED = data?.map((item) => {
         return{
           id: item.id,
-          name : item.name , 
-          status: "active",
-          email : item.email , 
-          type: item.type,
-          password : item.password
+          title : item.title , 
+          clientInformation: item.ClientInformation,
+          Date : item.Date , 
+          Details: item.Details,
+          Request : item.Request
         }
       })
       setData(DataFORMATED)
