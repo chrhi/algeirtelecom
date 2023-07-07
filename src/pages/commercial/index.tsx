@@ -24,7 +24,7 @@ function Page() {
           id: item.id,
           title : item.title , 
           clientInformation: item.ClientInformation,
-          Date : item.Date , 
+      
           Details: item.Details,
           Request : item.Request
         }

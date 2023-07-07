@@ -105,7 +105,7 @@ export function UserAdd({refetch}:Props) {
                 <SelectContent className="!bg-white">
                  <SelectGroup>
                    <SelectLabel>les types</SelectLabel>
-                   <SelectItem value="client">client</SelectItem>
+                   <SelectItem value="admin">admin</SelectItem>
                    <SelectItem value="commercial">commercial</SelectItem>
                  </SelectGroup>
                 </SelectContent>

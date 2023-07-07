@@ -27,7 +27,6 @@ export const reportsRouter = createTRPCRouter({
       data: {
        ClientInformation :  input.ClientInformation, 
        Details :  input.Details, 
-       Date :  input.Date , 
        title :  input.title, 
        Request :  input.Request
       },
