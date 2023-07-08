@@ -9,6 +9,7 @@ import { Icons } from "~/components/icons";
 import { api } from "~/utils/api";
 import { useToast } from "~/components/ui/use-toast";
 import { useRouter } from "next/router";
+import { userReducer } from "~/reducer/user-state";
 
 
 export default function Home() {
@@ -17,8 +18,17 @@ export default function Home() {
 
   const { toast } = useToast()
 
+  const setUser = userReducer(state => state.set_user)
+
   const userMutation = api.users.signInUser.useMutation({
     onSuccess : (data) => {
+      setUser({
+        email : data.email || "" , 
+        name : data.name || "", 
+        id : data.id , 
+        photo : data.image || "",
+        type : data.type
+      })
       if(data.type === "admin"){
         router.push("/admin")
       }else{

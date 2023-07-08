@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { FC } from 'react'
 import Image from 'next/image'
 import { Button } from './ui/button'
@@ -11,13 +15,15 @@ interface HeaderAbdullahProps {
 
 const Header: FC<HeaderAbdullahProps> = ({type}) => {
 
+  const router = useRouter();
+
   
 
   return<div className='w-full h-[70px]  bg-black '>
     {
       type ? 
       <div className="flex justify-between items-center h-full  container ">
-      <div className='h-full flex items-center justify-start w-[600px]'>
+      <div className='h-full flex items-center gap-x-4 justify-start w-[700px]'>
         <div className='w-[15%] flex items-center justify-start gap-x-2'>
           <Image
             src={logo}
@@ -27,7 +33,16 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
           />
           <h3 className='text-white text-xl mr-1 font-semibold'>Shawii</h3>
         </div>
-             <Button variant="ghost" className='text-white w-fit flex'>
+             <Button
+                onClick={() => router.push("admin")}
+              className={` p-1 mr-4 text-zinc-300 rounded-lg ${
+                //@ts-ignore
+                router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
+                "/admin"
+                  ? " text-white font-semibold"
+                  : "border-transparent text-gray-600 hover:text-gray-50"
+              }`}
+             variant="ghost">
                     Les utilisatures
               </Button>
          </div>
