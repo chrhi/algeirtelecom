@@ -43,7 +43,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
                   : "border-transparent text-gray-300 hover:text-gray-50"
               }`}
              variant="ghost">
-                    Les utilisatures
+                    Les utilisateurs
               </Button>
          </div>
 

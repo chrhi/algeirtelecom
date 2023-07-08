@@ -35,7 +35,7 @@ function Page() {
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Tableau des utrlistaerus pour l'Admin</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Tableau des utilisateurs pour l'Admin</h2>
             <p className="text-muted-foreground">
             Voici une liste de vos rapports !
             </p>
