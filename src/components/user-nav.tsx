@@ -44,22 +44,19 @@ export function UserNav() {
         <DropdownMenuGroup>
           <DropdownMenuItem className="cursor-pointer">
           Profil
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
           les services
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+           
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer" >
-          les employés
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem >
+         
           
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" onClick={() => router.push("/")}>
         Se déconnecter
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
