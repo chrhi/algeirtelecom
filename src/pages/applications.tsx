@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react'
+import AppDeleteAlert from '~/components/alerts/delete-app'
 import AppLayout from '~/components/layout'
 import {columns} from "~/components/tables/service/columns"
 import {DataTable} from "~/components/tables/service/data-table"
@@ -26,6 +27,7 @@ function Page() {
 
   return (
    <AppLayout commercial={false} auth = {true}>
+    <AppDeleteAlert refetch={refetch} />
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>

@@ -27,16 +27,23 @@ import {
   } from "~/components/ui/select"
 
 import { useToast } from "./ui/use-toast"
+import { openModelUser } from "~/reducer/edit-user-state"
 
 type Props = {
     refetch : () => Promise<any>
   }
 
-export function UserAdd({refetch}:Props) {
+export function UserUpdate({refetch}:Props) {
 
     const {toast} = useToast()
 
     const [Appkications , setApplications] = useState<{id : string , title : string}[]>([])
+
+    const userInfo = openModelUser()
+    const isOpen = openModelUser(state => state.showModel)
+
+    const setIsOpen = openModelUser(state => state.setShowModel)
+
 
     api.services.getServices.useQuery(undefined , {
       onSuccess(data) {
@@ -52,7 +59,7 @@ export function UserAdd({refetch}:Props) {
   
    
 
-    const userMutation = api.users.createUser.useMutation({
+    const userMutation = api.users.updateUser.useMutation({
         onSuccess : async () => {
             await  refetch()
         }, 
@@ -67,11 +74,11 @@ export function UserAdd({refetch}:Props) {
     })
 
     const [inputs , setInputs] = useState({
-        name : "",
-        password : "" ,
-        email : "", 
-        bio : "",
-        type : "client",
+        name : userInfo.Name,
+        password : userInfo.Password ,
+        email : userInfo.Email, 
+        bio : userInfo.bio,
+        type : userInfo.Type,
         allocateApplications : ""
     })
   
@@ -87,28 +94,27 @@ export function UserAdd({refetch}:Props) {
               })
         }
         userMutation.mutate({
+          id : userInfo.id ,
             bio : inputs.bio , 
             email : inputs.email , 
             image : "" , 
             name : inputs.name , 
             password : inputs.password , 
             type : inputs.type ,
-            allocateApplications : inputs.allocateApplications
+          
         })
          
     }
 
   return (
-    <Sheet >
-      <SheetTrigger asChild>
-        <Button variant="outline">ajouter un nouvel utilisateur</Button>
-      </SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={val => setIsOpen(val)} >
+   
       <SheetContent 
       
       className="!w-[700px]  !bg-white "
      >
         <SheetHeader >
-          <SheetTitle>Ajouter un nouvel utilisateur</SheetTitle>
+          <SheetTitle>Modifier un nouvel utilisateur</SheetTitle>
           <SheetDescription>
           vous pouvez ajouter un autre utilisateur de type client ou de type commercial
           </SheetDescription>
@@ -120,7 +126,7 @@ export function UserAdd({refetch}:Props) {
             </Label>
           <Select
           
-          onValueChange={(value) => setInputs({...inputs , type : value})} defaultValue="client">
+          onValueChange={(value) => setInputs({...inputs , type : value})} defaultValue={userInfo.Type || "client"}>
                 <SelectTrigger className="w-full">
                     <SelectValue placeholder="Sélectionnez un type" />
                 </SelectTrigger>

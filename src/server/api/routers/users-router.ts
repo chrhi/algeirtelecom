@@ -20,7 +20,7 @@ export const userRouter = createTRPCRouter({
       bio : z.string(), 
       image : z.string()
      }))
-    .query( async ({input , ctx }) => {
+    .mutation( async ({input , ctx }) => {
       
      const data = await ctx.prisma.user.update({
       data: {
@@ -38,10 +38,14 @@ export const userRouter = createTRPCRouter({
      return data
     }),
     deleteUser: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query( async ({ ctx }) => {
+    .input(z.object({ id: z.string() }))
+    .mutation( async ({input ,  ctx }) => {
       
-     const data = await ctx.prisma.user.findMany()
+     const data = await ctx.prisma.user.delete({
+      where :{
+        id : input.id
+      }
+     })
      return data
     }),
     createUser: publicProcedure
@@ -51,13 +55,14 @@ export const userRouter = createTRPCRouter({
       type : z.string(), 
       password : z.string(),
       bio : z.string(), 
-      image : z.string()
+      image : z.string(),
+      allocateApplications : z.string()
      }))
     .mutation( async ({input , ctx }) => {
       
      const data = await ctx.prisma.user.create({
       data: {
-        password : input.name, 
+        password : input.password, 
         type : input.type ,
         bio : input.bio, 
         email : input.email,
@@ -65,7 +70,25 @@ export const userRouter = createTRPCRouter({
         name : input.name
       }
      })
+     if(input.type === "employee"){
+      
+     const service = await ctx.prisma.service.findFirst({
+      where :{
+        id : input.allocateApplications
+      }
+     })
+     await ctx.prisma.deal.create({
+      data :{
+        userId : data.id , 
+        ServiceId : input.allocateApplications , 
+        title : service?.title || ""
+      }
+     })
+
      return data
+     }else{
+      return data
+     }
     }),
     signInUser: publicProcedure
     .input(z.object({ email: z.string() , password : z.string() }))

@@ -2,13 +2,13 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { openModelReport } from "~/reducer/open-models"
-import { deleteReport } from "~/reducer/delete-actions"
+import {  MoreHorizontal } from "lucide-react"
+
+import { deleteApplication,  } from "~/reducer/delete-actions"
 
 
 // This type is used to define the shape of our data.
@@ -45,8 +45,8 @@ export const columns: ColumnDef<report>[] = [
      
     //  const setData = openModelReport(state => state.setData)
 
-    //  const setIsOpen = deleteReport(state => state.setShowModel)
-    //  const setId = deleteReport(state => state.setId)
+   const setIsOpen = deleteApplication(state => state.setShowModel)
+     const setId = deleteApplication(state => state.setId)
 
     //  const handleOpenModel = () => {
     //   setData({
@@ -60,10 +60,10 @@ export const columns: ColumnDef<report>[] = [
     //   })
     //  }
 
-    //  const handleDeleteRow = () => {
-    //   setId(row.original.id)
-    //   setIsOpen(true)
-    //  }
+     const handleDeleteRow = () => {
+      setId(row.original.id)
+      setIsOpen(true)
+     }
  
       return (
         <DropdownMenu>
@@ -79,17 +79,15 @@ export const columns: ColumnDef<report>[] = [
             className="cursor-pointer"
               onClick={() => navigator.clipboard.writeText(row.original.id)}
             >
-             Copier l'ID utilisateur
+             Copier l'ID 
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem 
-        
-        className="cursor-pointer !hover:bg-red-300" >Voir les details</DropdownMenuItem>
+         
             
             <DropdownMenuItem 
         
-            className="cursor-pointer !hover:bg-red-300" >Supprimer</DropdownMenuItem>
+            className="cursor-pointer !hover:bg-red-300" onClick={handleDeleteRow} >Supprimer</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

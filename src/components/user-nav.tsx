@@ -42,7 +42,10 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem 
+          
+          onClick={() => router.push("/profile")}
+          className="cursor-pointer">
           Profil
           
           </DropdownMenuItem>

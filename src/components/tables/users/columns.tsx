@@ -7,6 +7,8 @@ import { ColumnDef } from "@tanstack/react-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { deleteUser } from "~/reducer/delete-actions"
+import { openModelUser } from "~/reducer/edit-user-state"
 
 
 
@@ -51,7 +53,29 @@ export const columns: ColumnDef<user>[] = [
     cell: ({ row }) => {
      
      
+      const setIsOpen = deleteUser(state => state.setShowModel)
+      const setId = deleteUser(state => state.setId)
 
+      const setData  = openModelUser(state => state.setData)
+
+      const handleOpenDeleteAlert = () => {
+        setId(row.original.id)
+        setIsOpen(true)
+        
+      }
+
+      const updateUser = () => {
+        setData({
+          bio : "" , 
+          Email : row.original.email , 
+          Name : row.original.name , 
+          Password : row.original.password , 
+          Status : row.original.status , 
+          id : row.original.id , 
+          Type : row.original.type , 
+          showModel : true
+        })
+      }
      
  
       return (
@@ -71,10 +95,15 @@ export const columns: ColumnDef<user>[] = [
              Copier l'ID utilisateur
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+
+            <DropdownMenuItem 
+        
+        className="cursor-pointer !hover:bg-red-300" onClick={updateUser} >Update user</DropdownMenuItem>
+ 
             
             <DropdownMenuItem 
         
-            className="cursor-pointer !hover:bg-red-300" >Supprimer</DropdownMenuItem>
+            className="cursor-pointer !hover:bg-red-300" onClick={handleOpenDeleteAlert} >Supprimer</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

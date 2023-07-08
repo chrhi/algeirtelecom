@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react'
+import UserDeleteAlert from '~/components/alerts/delete-user'
 import AppLayout from '~/components/layout'
 import {columns} from "~/components/tables/users/columns"
 import {DataTable} from "~/components/tables/users/data-table"
+import { UserUpdate } from '~/components/user-update'
 import { api } from '~/utils/api'
 
 
@@ -28,6 +30,8 @@ function Page() {
 
   return (
    <AppLayout commercial={false} auth = {true}>
+       <UserDeleteAlert refetch={refetch} />
+       <UserUpdate refetch={refetch} />
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>

@@ -60,3 +60,4 @@ export const openModelReport = create<OpenModelReport>(
         }) => set({id  ,  showModel, Title  ,  clientInformation  ,   Details ,  Request  ,  Date }),
     }),
 )
+

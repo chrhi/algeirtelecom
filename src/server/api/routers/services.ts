@@ -13,7 +13,7 @@ export const serviceRouter = createTRPCRouter({
   
     deleteService: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query( async ({ input, ctx }) => {
+    .mutation( async ({ input, ctx }) => {
       
      const data = await ctx.prisma.service.delete({
         where : {
