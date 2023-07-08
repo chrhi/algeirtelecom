@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react'
 import AppLayout from '~/components/layout'
-import {columns} from "~/components/tables/users/columns"
-import {DataTable} from "~/components/tables/users/data-table"
+import {columns} from "~/components/tables/service/columns"
+import {DataTable} from "~/components/tables/service/data-table"
 import { api } from '~/utils/api'
 
 
@@ -10,16 +10,14 @@ function Page() {
 
   const [data , setData] = useState<any[]>([])
 
-  const {refetch} = api.users.getUsers.useQuery(undefined , {
+  const {refetch} = api.services.getServices.useQuery(undefined , {
     onSuccess(data) {
       const DataFORMATED = data?.map((item) => {
         return{
           id: item.id,
-          name : item.name , 
-          status: "active",
-          email : item.email , 
-          type: item.type,
-          password : item.password
+          title : item.title , 
+          description: item.description,
+          url : item.url as string , 
         }
       })
       setData(DataFORMATED)

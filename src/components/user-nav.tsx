@@ -46,7 +46,9 @@ export function UserNav() {
           Profil
           
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem 
+          onClick={() => router.push("/applications")}
+          className="cursor-pointer">
           les services
            
           </DropdownMenuItem>

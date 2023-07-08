@@ -17,7 +17,8 @@ import { deleteReport } from "~/reducer/delete-actions"
 export type report  = {
   id: string
   title : string , 
-  description: string
+  description: string,
+  url : string
 }
 
 export const columns: ColumnDef<report>[] = [
@@ -32,6 +33,10 @@ export const columns: ColumnDef<report>[] = [
   {
     accessorKey: "description",
     header: "Description",
+  },
+  {
+    accessorKey: "url",
+    header: "Url",
   },
  
   {

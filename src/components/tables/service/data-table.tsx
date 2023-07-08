@@ -23,8 +23,8 @@ import {
     
   } from "~/components/ui/table"
   
-  import { RapportAdd } from "~/components/rapport-add"
-  import ReportDetails from "~/components/models/report-details"
+
+import { ServiceAdd } from "~/components/service-add"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -129,7 +129,7 @@ import {
           >
             Next
           </Button>
-          <RapportAdd  refetch={refetch} />
+          <ServiceAdd  refetch={refetch} />
          
         </div>
       </>

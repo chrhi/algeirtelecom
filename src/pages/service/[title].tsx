@@ -1,21 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import AppLayout from '~/components/layout'
-import {columns} from "~/components/tables/users/columns"
-import {DataTable} from "~/components/tables/users/data-table"
-import { api } from '~/utils/api'
+
 
 
 function Page() {
+
+    const router = useRouter();
+  const { title } = router.query;
 
 
 
   return (
    <AppLayout commercial={false} auth = {true}>
- 
-        <div className='max-w-5xl mb-8 mx-auto'>
+   
+   <div className='max-w-5xl mb-8 mx-auto'>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        The Internet Connection Chronicles
+      {title}
       </h1>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
         Once upon a time, in a far-off land, there was a kingdom that faced a major problem: a poor internet connection. The citizens were frustrated with the slow and unreliable service, which affected their daily lives and businesses.
@@ -112,7 +114,6 @@ function Page() {
         The moral of the story is: invest in a reliable internet connection to unlock endless possibilities and pave the way for progress in the digital age.
       </p>
     </div>
-     
    </AppLayout>
   )
 }

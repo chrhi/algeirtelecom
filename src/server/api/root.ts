@@ -2,6 +2,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
 import { userRouter } from "./routers/users-router";
 import { reportsRouter } from "./routers/reports-router";
 import { dommandeRouter } from "./routers/dommande-router";
+import { serviceRouter } from "./routers/services";
 
 /**
  * This is the primary router for your server.
@@ -11,7 +12,8 @@ import { dommandeRouter } from "./routers/dommande-router";
 export const appRouter = createTRPCRouter({
   users: userRouter,
   dommande : dommandeRouter , 
-  report : reportsRouter
+  report : reportsRouter,
+  services : serviceRouter
 });
 
 // export type definition of API

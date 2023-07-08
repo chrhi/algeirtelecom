@@ -63,6 +63,7 @@ model Deal {
 model Service {
   id           String    @id @default(uuid())
   title        String? 
+  url          String?
   description  String?  @db.LongText
   CreatedAt    DateTime  @default(now())
   @@index([id])
