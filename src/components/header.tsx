@@ -40,7 +40,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
                 router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
                 "/admin"
                   ? " text-white font-semibold"
-                  : "border-transparent text-gray-600 hover:text-gray-50"
+                  : "border-transparent text-gray-300 hover:text-gray-50"
               }`}
              variant="ghost">
                     Les utilisatures

@@ -27,6 +27,8 @@ type Props = {
 export function RapportAdd({refetch}:Props) {
 
     const {toast} = useToast()
+
+    
    
 
     const userMutation = api.report.createReport.useMutation({
@@ -66,6 +68,7 @@ export function RapportAdd({refetch}:Props) {
             Details : inputs.details , 
             Request : inputs.request , 
             title : inputs.title ,
+            userId : ""
         })
          
     }
@@ -73,13 +76,13 @@ export function RapportAdd({refetch}:Props) {
   return (
     <Sheet  >
       <SheetTrigger asChild>
-        <Button variant="outline">ajouter un nouvel utilisateur</Button>
+        <Button >Créer un rapport commercial</Button>
       </SheetTrigger>
       <SheetContent className="!bg-white " >
         <SheetHeader>
           <SheetTitle>Ajouter un rapport commercial</SheetTitle>
           <SheetDescription>
-          vous pouvez ajouter un autre utilisateur de type client ou de type commercial
+          à ce niveau, vous pouvez créer de nouveaux rapports
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">

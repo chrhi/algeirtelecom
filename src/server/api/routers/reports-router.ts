@@ -51,7 +51,7 @@ export const reportsRouter = createTRPCRouter({
     .input(z.object({ 
         ClientInformation : z.string(),
         Details : z.string(), 
-       
+        userId : z.string(),
         title : z.string(),
         Request : z.string(), 
      }))
@@ -61,7 +61,7 @@ export const reportsRouter = createTRPCRouter({
       data: {
         ClientInformation :  input.ClientInformation, 
         Details :  input.Details, 
-         
+        userId : input.userId ,
         title :  input.title, 
         Request :  input.Request
       }

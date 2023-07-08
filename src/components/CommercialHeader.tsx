@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import type { FC } from 'react'
 import Image from 'next/image'
@@ -18,7 +19,7 @@ const CommercialHeader: FC<CommercialHeaderProps> = ({type}) => {
     {
       type ? 
       <div className="flex justify-between items-center h-full  container ">
-      <div className='h-full flex items-center justify-start w-[600px]'>
+      <div className='h-full flex items-center gap-x-4 justify-start w-[600px]'>
         <div className='w-[15%] flex items-center justify-start gap-x-2'>
           <Image
             src={logo}
@@ -30,12 +31,27 @@ const CommercialHeader: FC<CommercialHeaderProps> = ({type}) => {
         </div>
              <Button 
              onClick={() => router.push("/commercial")}
-             variant="ghost" className='text-white w-fit flex'>
+             variant="ghost" 
+             className={` cursor-pointer p-1 mr-4 text-zinc-100 rounded-lg ${
+              //@ts-ignore
+              router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
+              "/commercial"
+              ? " text-white font-semibold"
+              : "border-transparent text-gray-300 hover:text-gray-50"
+            }`}
+             >
              Les rapport
               </Button>
               <Button
+               className={` cursor-pointer p-1 mr-4 text-zinc-100 rounded-lg ${
+                //@ts-ignore
+                router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
+                "/commercial/dommonds"
+                ? " text-white font-semibold"
+                : "border-transparent text-gray-300 hover:text-gray-50"
+              }`}
               onClick={() => router.push("/commercial/dommonds")}
-              variant="ghost" className='text-white w-fit flex'>
+              variant="ghost" >
               Les dommands
               </Button>
          </div>

@@ -30,7 +30,7 @@ model Report {
   id           String    @id @default(uuid())
   title        String? 
   userId       String
-  Following    String?
+
   ClientInformation String?  @db.LongText
   Details      String?
   Request      String?
