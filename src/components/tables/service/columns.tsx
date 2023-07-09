@@ -18,7 +18,8 @@ export type report  = {
   id: string
   title : string , 
   description: string,
-  url : string
+  url : string,
+  cost : string
 }
 
 export const columns: ColumnDef<report>[] = [
@@ -37,6 +38,10 @@ export const columns: ColumnDef<report>[] = [
   {
     accessorKey: "url",
     header: "Url",
+  },
+  {
+    accessorKey: "cost",
+    header: "Cout",
   },
  
   {

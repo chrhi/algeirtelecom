@@ -66,7 +66,7 @@ import { ServiceAdd } from "~/components/service-add"
     return (
       <>
      
-      <div className="rounded-md w-full mx-auto  border">
+      <div className="rounded-md w-full mx-auto bg-white  border">
   
      
         <Table>

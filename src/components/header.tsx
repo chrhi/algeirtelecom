@@ -19,23 +19,23 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
 
   
 
-  return<div className='w-full h-[70px]  bg-black '>
+  return<div className='w-full h-[70px]  bg-white  '>
     {
       type ? 
       <div className="flex justify-between items-center h-full  container ">
       <div className='h-full flex items-center gap-x-4 justify-start w-[700px]'>
-        <div className='w-[15%] flex items-center justify-start gap-x-2'>
+        <div className='w-[35%] flex items-center justify-start gap-x-2'>
           <Image
             src={logo}
-            width={20} 
-            height={20}
+            width={30} 
+            height={30}
             alt='logo'
           />
-          <h3 className='text-white text-xl mr-1 font-semibold'>Shawii</h3>
+          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algerie telechome</h3>
         </div>
              <Button
                 onClick={() => router.push("admin")}
-              className={` p-1 mr-4 text-zinc-300 rounded-lg ${
+              className={` p-1 mr-4 text-zinc-900 rounded-lg ${
                 //@ts-ignore
                 router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
                 "/admin"
@@ -54,11 +54,11 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
   <div className='container h-full flex justify-start gap-x-2 items-center'>
      <Image
             src={logo}
-            width={20} 
-            height={20}
+            width={30} 
+            height={30}
             alt='logo'
       />
-        <h3 className='text-white text-xl mr-1 font-semibold'>Shawii</h3>
+          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algerie telechome</h3>
   </div>
 }
    </div>

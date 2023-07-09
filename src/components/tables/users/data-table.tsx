@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
   return (
     <>
    
-    <div className="rounded-md w-full mx-auto  border">
+    <div className="rounded-md w-full mx-auto bg-white  border">
     
       <Table>
         <TableHeader>

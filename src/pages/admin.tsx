@@ -31,7 +31,7 @@ function Page() {
   })
 
   return (
-   <AppLayout commercial={false} auth = {true}>
+   <AppLayout auth = {true}>
        <UserDeleteAlert refetch={refetch} />
        <UserUpdate refetch={refetch} />
        <AssignServiceModel refetch={refetch} />

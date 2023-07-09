@@ -185,7 +185,7 @@ export function UserAdd({refetch}:Props) {
             <Input 
                 value={inputs.email}
                 id="PASSWORD" 
-                type="email"
+                
                 onChange={e => setInputs({...inputs , email : e.target.value})}
                 className="col-span-3" 
              />

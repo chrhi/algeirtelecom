@@ -66,7 +66,7 @@ export default function Home() {
  }
 
   return (
-   <AppLayout  commercial={false} auth={false}>
+   <AppLayout   auth={false}>
     
     <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -90,7 +90,7 @@ export default function Home() {
               value={inputs.email}
               id="email"
               placeholder="name@example.com"
-              
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           
            
               disabled={userMutation.isLoading}
@@ -106,14 +106,14 @@ export default function Home() {
               id="password"
               placeholder="*******"
               type="password"
-           
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               disabled={userMutation.isLoading}
             />
           </div>
           <Button 
                   onClick={handleSubmit}
                   disabled={userMutation.isLoading}
-                  className="bg-emerald-600 text-white rounded-lg">
+                  className=" text-white rounded-lg">
                   {userMutation.isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

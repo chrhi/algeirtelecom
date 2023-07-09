@@ -19,6 +19,7 @@ function Page() {
           title : item.title , 
           description: item.description,
           url : item.url as string , 
+          cost : item.cost
         }
       })
       setData(DataFORMATED)
@@ -26,7 +27,7 @@ function Page() {
   })
 
   return (
-   <AppLayout commercial={false} auth = {true}>
+   <AppLayout  auth = {true}>
     <AppDeleteAlert refetch={refetch} />
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
