@@ -9,6 +9,7 @@ import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { deleteUser } from "~/reducer/delete-actions"
 import { openModelUser } from "~/reducer/edit-user-state"
+import { giveEmployee, giveService } from "~/reducer/light-models"
 
 
 
@@ -30,23 +31,23 @@ export const columns: ColumnDef<user>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "Statut",
   },
   {
     accessorKey: "email",
-    header: "Email",
+    header: "E-mail",
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "Nom",
   },
   {
     accessorKey: "type",
-    header: "Type",
+    header: "Le type",
   },
   {
     accessorKey: "password",
-    header: "Password",
+    header: "Mot de passe",
   },
   {
     id: "actions",
@@ -62,6 +63,22 @@ export const columns: ColumnDef<user>[] = [
         setId(row.original.id)
         setIsOpen(true)
         
+      }
+
+
+      //this for openning the model of giving a service
+      const openServiceModel = giveService(state => state.setShowModel)
+      const setIdForServiceModel = giveService(state => state.setId)
+      const openService = () => {
+        setIdForServiceModel(row.original.id)
+        openServiceModel(true)
+      }
+      //this for openning the model of giving a emoloyee
+      const openEmoloyeeModel = giveEmployee(state => state.setShowModel)
+      const setIdForEmoloyeeModel = giveEmployee(state => state.setId)
+      const openEmployee = () => {
+        setIdForEmoloyeeModel(row.original.id)
+        openEmoloyeeModel(true)
       }
 
       const updateUser = () => {
@@ -96,15 +113,25 @@ export const columns: ColumnDef<user>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem 
-        
-        className="cursor-pointer !hover:bg-red-300" onClick={updateUser} >Update user</DropdownMenuItem>
- 
+          <DropdownMenuItem 
+            className="cursor-pointer !hover:bg-red-300" onClick={updateUser} >
+            Modifier l'utilisateur
+          </DropdownMenuItem>
+          
+          <DropdownMenuItem 
+              className="cursor-pointer !hover:bg-red-300" onClick={openEmployee} >
+              give employee
+          </DropdownMenuItem>
+
+          <DropdownMenuItem 
+              className="cursor-pointer !hover:bg-red-300" onClick={openService} >
+              give applications
+          </DropdownMenuItem>
             
-            <DropdownMenuItem 
-        
-            className="cursor-pointer !hover:bg-red-300" onClick={handleOpenDeleteAlert} >Supprimer</DropdownMenuItem>
-          </DropdownMenuContent>
+          <DropdownMenuItem 
+              className="cursor-pointer !hover:bg-red-300"
+              onClick={handleOpenDeleteAlert} >Supprimer</DropdownMenuItem>
+           </DropdownMenuContent>
         </DropdownMenu>
       )
     },

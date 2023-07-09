@@ -16,6 +16,7 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   password      String
+  following     String?
   type          String
   bio           String?
   email         String?   @unique
@@ -53,7 +54,9 @@ model Request {
 
 model Deal {
   id           String    @id @default(uuid())
+  employeeId   String?
   userId       String
+  duration     String?
   ServiceId    String
   title        String
   CreatedAt    DateTime  @default(now())
@@ -64,10 +67,26 @@ model Service {
   id           String    @id @default(uuid())
   title        String? 
   url          String?
+  image        String?
+  cost         Float?
   description  String?  @db.LongText
   CreatedAt    DateTime  @default(now())
   @@index([id])
 }
+
+model workContract {
+    id           String    @id @default(uuid())
+    title        String? 
+    clientId     String?
+    employeeId   String? 
+    CreatedAt    DateTime  @default(now())
+    @@index([id])
+}
+
+
+
+
+
 
 
 

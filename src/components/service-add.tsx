@@ -45,6 +45,8 @@ export function ServiceAdd({refetch}:Props) {
     const [inputs , setInputs] = useState({
         title : "",
         description : "" ,
+        imageUrl : "",
+        cost : ""
      
     })
   
@@ -62,7 +64,9 @@ export function ServiceAdd({refetch}:Props) {
         userMutation.mutate({
             title : inputs.title , 
             description : inputs.description , 
-            url : `algeirtelecom.vercel.app//service/${inputs.title}`
+            url : `algeirtelecom.vercel.app//service/${inputs.title}`,
+            imageUrl : inputs.imageUrl,
+            cost : Number(inputs.cost)
         })
          
     }
@@ -72,7 +76,7 @@ export function ServiceAdd({refetch}:Props) {
       <SheetTrigger asChild>
         <Button variant="outline">ajouter un nouvel service</Button>
       </SheetTrigger>
-      <SheetContent className="!bg-white">
+      <SheetContent className="!bg-white w-[600px]">
         <SheetHeader>
           <SheetTitle>Ajouter un nouvel service</SheetTitle>
           <SheetDescription>
@@ -81,7 +85,7 @@ export function ServiceAdd({refetch}:Props) {
         </SheetHeader>
         <div className="grid gap-4 py-4">
      
-          <div className="grid grid-cols-4 items-center gap-4">
+        <div className="flex flex-col items-start !w-full gap-4">
             <Label htmlFor="title" className="text-right">
               title
             </Label>
@@ -91,8 +95,30 @@ export function ServiceAdd({refetch}:Props) {
                 onChange={e => setInputs({...inputs , title : e.target.value})}
                className="col-span-3" />
           </div>
+
+          <div className="flex flex-col items-start !w-full gap-4">
+            <Label htmlFor="title" className="text-right">
+              image url
+            </Label>
+            <Input 
+               id="title"
+                value={inputs.imageUrl}
+                onChange={e => setInputs({...inputs , imageUrl : e.target.value})}
+               className="col-span-3" />
+          </div>
+
+          <div className="flex flex-col items-start !w-full gap-4">
+            <Label htmlFor="title" className="text-right">
+              cost
+            </Label>
+            <Input 
+               id="title"
+                value={inputs.cost}
+                onChange={e => setInputs({...inputs , cost : e.target.value})}
+               className="col-span-3" />
+          </div>
         
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="flex flex-col items-start !w-full gap-4">
             <Label htmlFor="bio" className="text-right">
               description
             </Label>

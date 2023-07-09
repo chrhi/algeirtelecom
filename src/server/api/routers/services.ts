@@ -27,7 +27,8 @@ export const serviceRouter = createTRPCRouter({
       title : z.string(),
       description : z.string(), 
       url : z.string(), 
-    
+      imageUrl : z.string(),
+      cost : z.number()
      }))
     .mutation( async ({input , ctx }) => {
       
@@ -36,6 +37,9 @@ export const serviceRouter = createTRPCRouter({
         title : input.title, 
         description : input.description ,
         url : input.url, 
+        image : input.imageUrl , 
+        cost  : input.cost,
+        
       }
      })
      return data

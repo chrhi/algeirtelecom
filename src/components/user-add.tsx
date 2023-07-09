@@ -72,7 +72,8 @@ export function UserAdd({refetch}:Props) {
         email : "", 
         bio : "",
         type : "client",
-        allocateApplications : ""
+        allocateApplications : "",
+        imageUrl : ""
     })
   
 
@@ -89,10 +90,10 @@ export function UserAdd({refetch}:Props) {
         userMutation.mutate({
             bio : inputs.bio , 
             email : inputs.email , 
-            image : "" , 
+            image : inputs.imageUrl , 
             name : inputs.name , 
             password : inputs.password , 
-            type : inputs.type ,
+            type :inputs.type ,
             allocateApplications : inputs.allocateApplications
         })
          
@@ -188,6 +189,16 @@ export function UserAdd({refetch}:Props) {
                 onChange={e => setInputs({...inputs , email : e.target.value})}
                 className="col-span-3" 
              />
+          </div>
+          <div className="flex flex-col items-start !w-full gap-4">
+            <Label htmlFor="title" className="text-right">
+              image url
+            </Label>
+            <Input 
+               id="title"
+                value={inputs.imageUrl}
+                onChange={e => setInputs({...inputs , imageUrl : e.target.value})}
+               className="col-span-3" />
           </div>
       
           <div className="flex flex-col items-start !w-full gap-4">

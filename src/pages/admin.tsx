@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import UserDeleteAlert from '~/components/alerts/delete-user'
 import AppLayout from '~/components/layout'
+import AssignServiceModel from '~/components/models/assign-service'
+import GiveEmployeeModel from '~/components/models/give-employee'
 import {columns} from "~/components/tables/users/columns"
 import {DataTable} from "~/components/tables/users/data-table"
 import { UserUpdate } from '~/components/user-update'
@@ -32,6 +34,8 @@ function Page() {
    <AppLayout commercial={false} auth = {true}>
        <UserDeleteAlert refetch={refetch} />
        <UserUpdate refetch={refetch} />
+       <AssignServiceModel refetch={refetch} />
+       <GiveEmployeeModel refetch={refetch} />
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
