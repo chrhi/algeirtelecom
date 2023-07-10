@@ -1,22 +1,24 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/no-unescaped-entities */
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-
+import { Badge } from "~/components/ui/badge"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu"
 import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { deleteUser } from "~/reducer/delete-actions"
 import { openModelUser } from "~/reducer/edit-user-state"
-import { giveEmployee, giveService } from "~/reducer/light-models"
-
+import { giveEmployee, giveService , openUserProfile } from "~/reducer/light-models"
+import { useToast } from "~/components/ui/use-toast"
 
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type user = {
-  id: string
+  id: string,
+  image : string,
   name : string , 
   status: string,
   email : string , 
@@ -26,12 +28,16 @@ export type user = {
 
 export const columns: ColumnDef<user>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
+    accessorKey: "image",
+    header: "Image",
+    cell :({row}) => {
+      return <img   src={row.original.image} alt="profile pic" className="rounded-lg w-[40px]"  />
+    }
   },
   {
     accessorKey: "status",
     header: "Statut",
+    cell : ({row}) => <Badge className="bg-green-500">{row.original.status}</Badge>
   },
   {
     accessorKey: "email",
@@ -53,7 +59,7 @@ export const columns: ColumnDef<user>[] = [
     id: "actions",
     cell: ({ row }) => {
      
-     
+      const {toast} = useToast()
       const setIsOpen = deleteUser(state => state.setShowModel)
       const setId = deleteUser(state => state.setId)
 
@@ -65,6 +71,7 @@ export const columns: ColumnDef<user>[] = [
         
       }
 
+     
 
       //this for openning the model of giving a service
       const openServiceModel = giveService(state => state.setShowModel)
@@ -76,6 +83,16 @@ export const columns: ColumnDef<user>[] = [
       //this for openning the model of giving a emoloyee
       const openEmoloyeeModel = giveEmployee(state => state.setShowModel)
       const setIdForEmoloyeeModel = giveEmployee(state => state.setId)
+
+      //this for openning the model of users profile
+      const SetopenUserProfile = openUserProfile(state => state.setShowModel)
+      const setopenUserProfileId = openUserProfile(state => state.setId)
+
+      const handleOpenUserModel = () => {
+        setopenUserProfileId(row.original.id)
+        SetopenUserProfile(true)
+      }
+  
       const openEmployee = () => {
         setIdForEmoloyeeModel(row.original.id)
         openEmoloyeeModel(true)
@@ -107,9 +124,31 @@ export const columns: ColumnDef<user>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
             className="cursor-pointer"
-              onClick={() => navigator.clipboard.writeText(row.original.id)}
+              onClick={async () => {
+                    await  navigator.clipboard.writeText(row.original.id)
+                    toast({
+                      className:"bg-blue-500 text-white",
+                     
+                      title : "copié avec succès",
+                      description :"l'Id a été copié avec succès"
+                    })
+              }}
             >
              Copier l'ID utilisateur
+            </DropdownMenuItem>
+            <DropdownMenuItem
+            className="cursor-pointer"
+            onClick={async () => {
+              await  navigator.clipboard.writeText(row.original.email)
+              toast({
+                className:"bg-blue-500  text-white",
+              
+                title : "copié avec succès",
+                description :"l'email a été copié avec succès"
+              })
+        }}
+            >
+             Copier e-mail utilisateur
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
@@ -120,12 +159,18 @@ export const columns: ColumnDef<user>[] = [
           
           <DropdownMenuItem 
               className="cursor-pointer !hover:bg-red-300" onClick={openEmployee} >
-              give employee
+           donnez-lui un employé
           </DropdownMenuItem>
 
           <DropdownMenuItem 
               className="cursor-pointer !hover:bg-red-300" onClick={openService} >
-              give applications
+            rendre service
+          </DropdownMenuItem>
+
+          
+          <DropdownMenuItem 
+              className="cursor-pointer !hover:bg-red-300" onClick={handleOpenUserModel} >
+           voir les détails
           </DropdownMenuItem>
             
           <DropdownMenuItem 

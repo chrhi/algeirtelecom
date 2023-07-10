@@ -8,7 +8,7 @@ import NextNProgress from 'nextjs-progressbar';
 const MyApp: AppType = ({ Component, pageProps }) => {
   return<div>
        <NextNProgress 
-       color="#37f237"
+       color="#0000ff"
        options={{ 
         showSpinner: false 
         

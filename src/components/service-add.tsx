@@ -26,13 +26,17 @@ type Props = {
 export function ServiceAdd({refetch}:Props) {
 
     const {toast} = useToast()
+
+    const [isOpen , setIsOpen] = useState(false)
    
 
     const userMutation = api.services.createService.useMutation({
         onSuccess : async () => {
             await  refetch()
+            setIsOpen(false)
         }, 
         onError :(err) => {
+          setIsOpen(false)
             toast({
                 className:"bg-red-500 text-white",
                 variant: "destructive",
@@ -72,7 +76,7 @@ export function ServiceAdd({refetch}:Props) {
     }
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={val => setIsOpen(val)}>
       <SheetTrigger asChild>
         <Button variant="outline">ajouter un nouvel service</Button>
       </SheetTrigger>
@@ -130,9 +134,9 @@ export function ServiceAdd({refetch}:Props) {
           </div>
         </div>
         <SheetFooter>
-          <SheetClose asChild>
-            <Button onClick={handleSubmit}>Créer un utilisateur</Button>
-          </SheetClose>
+       
+            <Button isLoading={userMutation.isLoading} onClick={handleSubmit}>Créer un service</Button>
+        
         </SheetFooter>
       </SheetContent>
     </Sheet>

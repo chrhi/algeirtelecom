@@ -31,7 +31,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
             height={30}
             alt='logo'
           />
-          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algerie telechome</h3>
+          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algérie Télécom</h3>
         </div>
              <Button
                 onClick={() => router.push("admin")}
@@ -39,8 +39,8 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
                 //@ts-ignore
                 router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
                 "/admin"
-                  ? " text-white font-semibold"
-                  : "border-transparent text-gray-300 hover:text-gray-50"
+                  ? " font-semibold"
+                  : "border-transparent text-gray-700 hover:text-gray-900"
               }`}
              variant="ghost">
                     Les utilisateurs
@@ -58,7 +58,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
             height={30}
             alt='logo'
       />
-          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algerie telechome</h3>
+          <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algérie Télécom</h3>
   </div>
 }
    </div>

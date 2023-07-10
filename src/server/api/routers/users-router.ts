@@ -90,6 +90,19 @@ export const userRouter = createTRPCRouter({
       return data
      }
     }),
+
+    getOneUser : publicProcedure
+    .input(z.object({ id: z.string()  }))
+    .mutation( async ({input ,  ctx }) => {
+      
+      const data = await ctx.prisma.user.findUnique({
+        where :{
+          id : input.id
+        }
+      })
+      return data
+     }),
+
     signInUser: publicProcedure
     .input(z.object({ email: z.string() , password : z.string() }))
     .mutation( async ({ input , ctx }) => {

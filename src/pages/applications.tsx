@@ -19,7 +19,8 @@ function Page() {
           title : item.title , 
           description: item.description,
           url : item.url as string , 
-          cost : item.cost
+          cost : item.cost,
+          image : item.image
         }
       })
       setData(DataFORMATED)
@@ -32,9 +33,9 @@ function Page() {
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">in here you can see and create all the application</h2>
+            <h2 className="text-2xl font-bold tracking-tight">ici vous pouvez voir et créer toutes les applications (services)</h2>
             <p className="text-muted-foreground">
-            Voici une liste de vos rapports !
+            Here is a list of your services!
             </p>
           </div>
           

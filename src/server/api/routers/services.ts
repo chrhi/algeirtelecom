@@ -10,7 +10,18 @@ export const serviceRouter = createTRPCRouter({
      const data = await ctx.prisma.service.findMany()
      return data
     }),
-  
+  getOneServices: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation( async ({input , ctx }) => {
+      
+     const data = await ctx.prisma.service.findUnique({
+      where :{
+        id : input.id
+      }
+     })
+     console.log(data)
+     return data
+    }),
     deleteService: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation( async ({ input, ctx }) => {
@@ -39,11 +50,13 @@ export const serviceRouter = createTRPCRouter({
         url : input.url, 
         image : input.imageUrl , 
         cost  : input.cost,
+
         
       }
      })
      return data
     }),
+
    
   
   });

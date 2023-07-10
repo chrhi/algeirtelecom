@@ -20,7 +20,7 @@ model User {
   type          String
   bio           String?
   email         String?   @unique
-  image         String?
+  image         String?   @db.LongText
   emailVerified DateTime?
   Report        Report[]
   Request       Request[]
@@ -58,7 +58,11 @@ model Deal {
   userId       String
   duration     String?
   ServiceId    String
-  title        String
+  title        String? 
+  url          String?    @db.LongText
+  image        String?
+  cost         Float?
+  description  String?  @db.LongText
   CreatedAt    DateTime  @default(now())
   @@index([id])
 }
@@ -66,7 +70,7 @@ model Deal {
 model Service {
   id           String    @id @default(uuid())
   title        String? 
-  url          String?
+  url          String?    @db.LongText
   image        String?
   cost         Float?
   description  String?  @db.LongText
@@ -76,9 +80,15 @@ model Service {
 
 model workContract {
     id           String    @id @default(uuid())
-    title        String? 
+    name        String? 
     clientId     String?
-    employeeId   String? 
+    employeeId   String?  
+    password      String
+    following     String?
+    type          String
+    bio           String?
+    email         String?  
+    image         String?   @db.LongText
     CreatedAt    DateTime  @default(now())
     @@index([id])
 }

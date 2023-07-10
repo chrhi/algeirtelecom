@@ -45,7 +45,11 @@ export const dealRouter = createTRPCRouter({
         ServiceId : z.string(),
       title : z.string(), 
       userId : z.string() ,
-      employeeId : z.string()
+      employeeId : z.string(),
+      cost : z.number(), 
+      description : z.string() , 
+      image : z.string() , 
+      url : z.string()
      }))
     .mutation( async ({input , ctx }) => {
       
@@ -55,6 +59,10 @@ export const dealRouter = createTRPCRouter({
        title : input.title ,
        userId : input.userId ,
        employeeId : input.employeeId ,
+       cost : input.cost,
+       description :  input.description , 
+       image : input.image, 
+       url : input.url, 
       }
      })
      return data

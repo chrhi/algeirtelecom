@@ -19,6 +19,7 @@ import { Label } from "../ui/label"
 import { api } from "~/utils/api"
 import { Button } from "../ui/button"
 
+
 interface ReportRetailsAbdullahProps {
   refetch : () => Promise<any>
 }
@@ -29,9 +30,29 @@ const AssignServiceModel: FC<ReportRetailsAbdullahProps> = ({refetch}) => {
   const setIsOpen = giveService(state => state.setShowModel)
   const id = giveService(state => state.id)
 
- const [value , setValue] = useState("")
+  const [value , setValue] = useState("")
 
- const [services , setServices] = useState<any[]>([])
+  const FirstMuaion = api.services.getOneServices.useMutation({
+    onSuccess : (data) => {
+
+      console.log("here is the servise information to get the client")
+    
+
+      mutation.mutate({
+        employeeId : "" , 
+        ServiceId : value,
+        userId :id , 
+        cost : data?.cost || 0 , 
+        description : data?.description || "" , 
+        image : data?.image || "" , 
+        title : data?.title || "" , 
+        url : data?.url || "" , 
+      })
+    }
+  })
+
+  const [services , setServices] = useState<any[]>([])
+
 
  const mutation = api.deal.makeDeal.useMutation({
   onSuccess(){
@@ -40,16 +61,17 @@ const AssignServiceModel: FC<ReportRetailsAbdullahProps> = ({refetch}) => {
  })
 
  const handleMutation = () => {
-  mutation.mutate({
-    employeeId : "" , 
-    ServiceId : value,
-    userId :id , 
-    title : "making a deal"
+
+  console.log("the va;ue when we are sedding the request ")
+  console.log(value)
+  FirstMuaion.mutate({
+    id : value
   })
  }
 
  api.services.getServices.useQuery(undefined , {
   onSuccess(data) {
+    console.log("there are the services")
       setServices(data)
   },
  })
@@ -65,13 +87,15 @@ return   <Dialog open={isOpen} onOpenChange={(val) => setIsOpen(val)}  >
           </Label>
         <Select
         
-        onValueChange={(value) => setValue(value)} defaultValue={services[0]?.id}>
+        onValueChange={(value) => {
+          console.log(value)
+          setValue(value)}} defaultValue={services[0]?.id}>
               <SelectTrigger className="w-full">
                   <SelectValue placeholder="Sélectionnez un type" />
               </SelectTrigger>
               <SelectContent className="!bg-white w-full">
                <SelectGroup>
-                 <SelectLabel>selected employee</SelectLabel>
+                 <SelectLabel>selected service</SelectLabel>
                  {services.map(item => (
                    <SelectItem key={item?.id} value={item?.id}>{item?.title}</SelectItem>
                  ))

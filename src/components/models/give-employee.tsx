@@ -23,6 +23,19 @@ interface ReportRetailsAbdullahProps {
     refetch : () => Promise<any>
 }
 
+
+type userType = {
+  id: string;
+  name: string | null;
+  password: string;
+  following: string | null;
+  type: string;
+  bio: string | null;
+  email: string | null;
+  image: string | null;
+  emailVerified: Date | null;
+} | null
+
 const GiveEmployeeModel: FC<ReportRetailsAbdullahProps> = ({refetch}) => {
 
     const isOpen = giveEmployee(state => state.showModel)
@@ -33,18 +46,38 @@ const GiveEmployeeModel: FC<ReportRetailsAbdullahProps> = ({refetch}) => {
 
    const [employees , setEmployees] = useState<any[]>([])
 
-   const mutation = api.contract.createService.useMutation({
+   const [user , setUser] = useState<userType>({} as userType)
+
+   
+ const Firstmutation = api.users.getOneUser.useMutation({
+  onSuccess(data) {
+    mutation.mutate({
+      clientId : id , 
+      employeeId : value,
+      bio :   data?.bio || "",
+      email :  data?.email || "",
+      following :   data?.following || "",
+      image :  data?.image || "",
+      name : data?.name|| "",
+      password :  data?.password || "",
+      type : data?.type || "",
+    })
+  },
+ })
+
+   const mutation = api.contract.createWorkContract.useMutation({
     onSuccess(data){
+      console.log("employee contract")
+      console.log(data)
       setIsOpen(false)
     }
    })
 
    const handleMutation = () => {
-    mutation.mutate({
-      clientId : id , 
-      employeeId : value,
-      title : "employee goes to client"
+    Firstmutation.mutate({
+      id : value
     })
+  
    }
 
    api.users.getUsers.useQuery(undefined , {

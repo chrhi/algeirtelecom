@@ -30,3 +30,14 @@ export const giveService = create<OpenModel>(
        
     }),
 )
+
+export const openUserProfile = create<OpenModel>(
+
+    (set) => ({
+        id : "",
+        showModel:false,
+        setShowModel:(input :boolean ) => set({showModel : input}),
+        setId : (input : string) => set({id : input}),
+       
+    }),
+)
