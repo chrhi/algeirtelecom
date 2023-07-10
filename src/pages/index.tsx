@@ -29,11 +29,7 @@ export default function Home() {
         photo : data.image || "",
         type : data.type
       })
-      if(data.type === "admin"){
-        router.push("/admin")
-      }else{
-        router.push("/commercial")
-      }
+      router.push("/admin")
       //todo handle that 
     },
     onError : (err) => {

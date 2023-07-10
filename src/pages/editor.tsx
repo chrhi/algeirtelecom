@@ -12,7 +12,7 @@ function Page() {
 
 
   return (
-   <AppLayout commercial={false} auth = {true}>
+   <AppLayout  auth = {true}>
         <div className='w-full  max-w-5xl h-fit'>
             <Editor />
         </div>

@@ -1,27 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import {  Loader2 } from 'lucide-react'
 import React, { useState } from 'react'
-import AppDeleteAlert from '~/components/alerts/delete-app'
 import AppLayout from '~/components/layout'
-import {columns} from "~/components/tables/service/columns"
-import {DataTable} from "~/components/tables/service/data-table"
-import { api } from '~/utils/api'
+import {columns} from "~/components/tables/api-request/columns"
+import {DataTable} from "~/components/tables/api-request/data-table"
 import { Badge } from '~/components/ui/badge'
+import { api } from '~/utils/api'
+
 
 function Page() {
 
   const [data , setData] = useState<any[]>([])
 
-  const {refetch , isFetching} = api.services.getServices.useQuery(undefined , {
+  const {refetch , isFetching} = api.apiRequest.getApiRequests.useQuery(undefined , {
     onSuccess(data) {
       const DataFORMATED = data?.map((item) => {
         return{
           id: item.id,
-          title : item.title , 
-          description: item.description,
-          url : item.url as string , 
-          cost : item.cost,
-          image : item.image
+          status :  item.status, 
+          endPoint :  item.endPoint,
+          responseTime  :  item.responseTime,  
+          apiKey    :  item.apiKey,  
         }
       })
       setData(DataFORMATED)
@@ -29,14 +29,14 @@ function Page() {
   })
 
   return (
-   <AppLayout  auth = {true}>
-    <AppDeleteAlert refetch={refetch} />
+   <AppLayout auth = {true}>
+      
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">ici vous pouvez voir et créer toutes les applications (services)</h2>
+            <h2 className="text-2xl font-bold tracking-tight">All api requests in real time </h2>
             <p className="text-muted-foreground">
-            Here is a list of your services!
+           here are all the reuest made to out api
             </p>
             <Badge color='bg-sky-300' className='bg-sky-50 border-blue-500   rounded-full font-normal text-blue-500' >
              
@@ -49,8 +49,7 @@ function Page() {
               "up to date"
              }
            </Badge>
-          </div>
-          
+          </div>   
         </div>
         <DataTable refetch={refetch} data={data}  columns={columns} />
        </div>

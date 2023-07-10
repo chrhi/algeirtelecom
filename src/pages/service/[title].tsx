@@ -13,7 +13,7 @@ function Page() {
 
 
   return (
-   <AppLayout commercial={false} auth = {true}>
+   <AppLayout  auth = {true}>
    
    <div className='max-w-5xl mb-8 mx-auto'>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">

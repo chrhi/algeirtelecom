@@ -93,6 +93,23 @@ model workContract {
     @@index([id])
 }
 
+model ApiKeys {
+   id           String    @id @default(uuid())
+   CreatedAt    DateTime  @default(now())
+   @@index([id])
+}
+
+
+model ApiRequest {
+     id            String    @id @default(uuid())
+     status        String?
+     endPoint      String?  
+     responseTime  String?  
+     apiKey        String?  
+     CreatedAt     DateTime  @default(now())
+     @@index([id])
+}
+
 
 
 

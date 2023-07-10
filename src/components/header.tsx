@@ -19,7 +19,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
 
   
 
-  return<div className='w-full h-[70px]  bg-white  '>
+  return<div className='w-full h-[70px] border-b bg-white  '>
     {
       type ? 
       <div className="flex justify-between items-center h-full  container ">
@@ -33,18 +33,7 @@ const Header: FC<HeaderAbdullahProps> = ({type}) => {
           />
           <h3 className='text-gray-900 text-xl mr-1 font-semibold'>Algérie Télécom</h3>
         </div>
-             <Button
-                onClick={() => router.push("admin")}
-              className={` p-1 mr-4 text-zinc-900 rounded-lg ${
-                //@ts-ignore
-                router.asPath.split("?")[0].split("/").slice(0, 3).join("/") ===
-                "/admin"
-                  ? " font-semibold"
-                  : "border-transparent text-gray-700 hover:text-gray-900"
-              }`}
-             variant="ghost">
-                    Les utilisateurs
-              </Button>
+          
          </div>
 
          <UserNav />
