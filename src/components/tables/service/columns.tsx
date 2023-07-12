@@ -25,15 +25,7 @@ export type report  = {
 }
 
 export const columns: ColumnDef<report>[] = [
-  {
-    accessorKey: "image",
-    header: "Image",
-    cell :({row}) => {
-      
-            return <img   src={row.original.image }
-      alt="profile pic" className="rounded-lg w-[40px]"  />
-    }
-  },
+ 
   {
     accessorKey: "title",
     header: "Title",

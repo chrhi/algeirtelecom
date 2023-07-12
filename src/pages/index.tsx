@@ -29,7 +29,18 @@ export default function Home() {
         photo : data.image || "",
         type : data.type
       })
-      router.push("/admin")
+      if(data.type === "admin"){
+        router.push("/admin")
+        return 
+      } 
+
+      toast({
+        className:"bg-red-500 text-white",
+        variant: "destructive",
+        title : "you are not admin",
+        description : "you dont have access to the app"
+      })
+     
       //todo handle that 
     },
     onError : (err) => {

@@ -129,33 +129,13 @@ export function UserAdd({refetch}:Props) {
                  <SelectGroup>
                    <SelectLabel>les types</SelectLabel>
                    <SelectItem value="client">client</SelectItem>
-                   <SelectItem value="commercial">commercial</SelectItem>
+                   <SelectItem value="admin">admin</SelectItem>
                    <SelectItem value="employee">employee</SelectItem>
                  </SelectGroup>
                 </SelectContent>
           </Select>
           </div>
-          {inputs.type === "employee" &&
-          <div className="flex flex-col items-start !w-full gap-4">
-          <Label htmlFor="name" >
-             allocate application
-           </Label>
-         <Select onValueChange={(value) => setInputs({...inputs , allocateApplications : value})} defaultValue="">
-               <SelectTrigger className="w-full">
-                   <SelectValue placeholder="Sélectionnez un application " />
-               </SelectTrigger>
-               <SelectContent className="!bg-white">
-                <SelectGroup>
-                  <SelectLabel>les applications</SelectLabel>
-                  {Appkications.map(item => (
-                       <SelectItem key={item?.id} value={item?.id}>{item?.title}</SelectItem>
-                  ))}
-                 
-                </SelectGroup>
-               </SelectContent>
-         </Select>
-         </div>
-        }
+        
             <div className="flex flex-col items-start !w-full gap-4">
             <Label htmlFor="name" >
               Name
