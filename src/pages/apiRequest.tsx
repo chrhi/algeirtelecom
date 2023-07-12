@@ -34,10 +34,8 @@ function Page() {
        <div className='w-full  flex flex-col items-start h-full  '>
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">All api requests in real time </h2>
-            <p className="text-muted-foreground">
-           here are all the reuest made to out api
-            </p>
+            <h2 className="text-2xl font-bold tracking-tight">Toutes les requêtes API en temps réel </h2>
+          
             <Badge color='bg-sky-300' className='bg-sky-50 border-blue-500   rounded-full font-normal text-blue-500' >
              
              {isFetching ? 

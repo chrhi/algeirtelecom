@@ -45,9 +45,7 @@ function Page() {
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Tableau des utilisateurs pour l'Admin</h2>
-            <p className="text-muted-foreground">
-            Voici une liste de vos rapports !
-            </p>
+          
             <Badge color='bg-sky-300' className='bg-sky-50 border-blue-500   rounded-full font-normal text-blue-500' >
              
               {isFetching ? 

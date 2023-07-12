@@ -35,9 +35,7 @@ function Page() {
        <div className="flex items-center justify-between mb-6 space-y-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">ici vous pouvez voir et créer toutes les applications (services)</h2>
-            <p className="text-muted-foreground">
-            Here is a list of your services!
-            </p>
+          
             <Badge color='bg-sky-300' className='bg-sky-50 border-blue-500   rounded-full font-normal text-blue-500' >
              
              {isFetching ? 
